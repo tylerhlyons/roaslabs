@@ -57,5 +57,8 @@ Everything is in `index.html`. Search for these:
 - Fully responsive (looks right on phones — most ManyChat traffic).
 - A short medical disclaimer is in the footer (smart to keep for anything
   pain/stretch related).
-- Want the booking CTA to appear only *after* the video plays ("timed reveal"),
-  a countdown, or an opt-in email form? Easy add — just ask.
+- **Timed VSL reveal is on.** The "Book a call" card stays locked behind a
+  "keep watching…" line and reveals after a delay. Change the wait in
+  `index.html` → find `REVEAL_AFTER_SECONDS = 180` (seconds). It counts from
+  page load, and restarts the moment someone clicks the video. **Tip:** set it
+  to `5` while testing so you can see it pop, then put it back near your offer.

@@ -246,6 +246,23 @@
     color:var(--smoke);font-size:.8rem;text-align:center;padding:24px;
   }
 
+  /* Timed VSL reveal */
+  .reveal-hidden{display:none}
+  .reveal-show{animation:revealUp .65s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes revealUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  .book-teaser{
+    text-align:center;color:var(--smoke);font-size:.92rem;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:30px 16px;
+  }
+  .book-teaser .pulse-dot{
+    width:9px;height:9px;border-radius:50%;background:var(--navy-bright);display:inline-block;
+    box-shadow:0 0 0 0 rgba(62,127,184,.6);animation:pulse 1.8s infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(62,127,184,.55)}
+    70%{box-shadow:0 0 0 12px rgba(62,127,184,0)}
+    100%{box-shadow:0 0 0 0 rgba(62,127,184,0)}}
+
   /* Footer */
   footer{border-top:1px solid var(--ash);padding:40px 0;text-align:center;color:var(--smoke)}
   footer .fname{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--bone);letter-spacing:.04em}
@@ -293,7 +310,6 @@
 
     <div class="cta-row">
       <a href="#routine" class="btn btn-primary">Get the routine ↓</a>
-      <a href="#book" class="btn btn-ghost">Talk to a coach</a>
     </div>
   </div>
 </section>
@@ -417,7 +433,13 @@
 <!-- ============================ BOOK A CALL ============================ -->
 <section class="cta-section" id="book">
   <div class="wrap">
-    <div class="cta-card">
+
+    <!-- Shown while the call is "locked" (during the VSL). Hidden on reveal. -->
+    <div class="book-teaser" id="book-teaser">
+      <span class="pulse-dot"></span> Keep watching — your free strategy call unlocks in a moment.
+    </div>
+
+    <div class="cta-card reveal-hidden" id="book-card">
       <span class="cta-pill">Free Strategy Call</span>
       <h2>Still in pain &amp; running on empty?<br><span class="alt">Let's fix the root of it.</span></h2>
       <p class="lead">If the stiffness, the fatigue, and the start-stop cycle are wearing you down — and you're a first responder or busy dad who wants to actually feel strong again — book a free call. We'll map out a simple plan that survives a 24/48.</p>
@@ -453,6 +475,46 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* =========================================================
+     TIMED VSL REVEAL
+     The "Book a call" card stays locked, then appears after the
+     viewer has had time to watch. Tune the seconds below.
+       - Real VSL: set near where you make the offer (e.g. 180).
+       - Testing:  set it to 5 so you can see it pop quickly.
+     ========================================================= */
+  var REVEAL_AFTER_SECONDS = 180;
+
+  (function () {
+    var card   = document.getElementById('book-card');
+    var teaser = document.getElementById('book-teaser');
+    var timer;
+
+    function reveal() {
+      if (!card) return;
+      card.classList.remove('reveal-hidden');
+      card.classList.add('reveal-show');
+      if (teaser) teaser.style.display = 'none';
+    }
+    function startTimer() {
+      clearTimeout(timer);
+      timer = setTimeout(reveal, REVEAL_AFTER_SECONDS * 1000);
+    }
+
+    if (REVEAL_AFTER_SECONDS <= 0) { reveal(); return; }
+
+    startTimer(); // fallback: reveals this long after the page loads
+
+    // Restart the countdown the moment they hit play on the video,
+    // so the offer lands while/after they watch (classic VSL behaviour).
+    var slot = document.querySelector('.video-slot');
+    if (slot) {
+      slot.style.cursor = 'pointer';
+      slot.addEventListener('click', startTimer);
+    }
+  })();
+</script>
 </body>
 </html>
