@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Shift-Proof Stretch Routine — Next Level Dad Fitness</title>
+<meta name="description" content="The free 10-minute mobility routine for firefighters, first responders, and busy dads. Kill the stiffness, save your back — no gym, no equipment." />
+
+<!-- Social share preview (swap og-image.jpg for your own) -->
+<meta property="og:title" content="The Shift-Proof Stretch Routine — Free" />
+<meta property="og:description" content="10 minutes. No gym. Built for guys who work a 24/48 and feel it in their back." />
+<meta property="og:image" content="og-image.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     NEXT LEVEL DAD FITNESS — brand tokens (from brand guide)
+     ============================================================ */
+  :root{
+    /* Accents */
+    --navy:#2B5C87;       /* Engine Navy — main brand, CTAs, the flame */
+    --navy-bright:#3E7FB8;
+    --gold:#E5B143;       /* Tactical Gold — emphasis only */
+    --green:#3BB273;      /* Field Green — wins / checkmarks */
+    --amber:#F2C94C;      /* Amber — almost-there */
+    /* Backgrounds */
+    --onyx:#0A0A0B;       /* default bg */
+    --gunmetal:#14151A;   /* cards */
+    --steel:#1A1B22;      /* raised cards */
+    --ash:#2D2E33;        /* borders / dividers */
+    /* Text */
+    --bone:#F2F2F5;
+    --smoke:#A5A7AE;
+
+    --maxw:760px;
+    --radius:16px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--onyx);
+    color:var(--bone);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* Display / headline type */
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue',Impact,sans-serif;
+    font-weight:400;
+    letter-spacing:.01em;
+    line-height:.95;
+    text-transform:uppercase;
+  }
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .navy{color:var(--navy-bright)}
+  .gold{color:var(--gold)}
+  .green{color:var(--green)}
+
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--navy-bright);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--navy-bright);display:inline-block}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:'Inter',sans-serif;font-weight:700;
+    letter-spacing:.04em;text-transform:uppercase;font-size:.92rem;
+    padding:18px 34px;border-radius:999px;cursor:pointer;border:none;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    text-align:center;
+  }
+  .btn-primary{
+    background:var(--navy);color:#fff;
+    box-shadow:0 0 0 1px rgba(62,127,184,.4), 0 12px 40px -8px rgba(43,92,135,.7);
+  }
+  .btn-primary:hover{background:var(--navy-bright);transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(62,127,184,.6), 0 16px 50px -8px rgba(43,92,135,.9)}
+  .btn-ghost{background:transparent;color:var(--bone);border:1px solid var(--ash)}
+  .btn-ghost:hover{border-color:var(--navy-bright);color:#fff}
+  .btn-block{width:100%}
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,11,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--ash);
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px}
+  /* Logo: swap <img src="logo.png"> in. SVG flame shows as fallback. */
+  .logo-mark{width:30px;height:34px;display:block}
+  .brand-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;line-height:1}
+  .brand-tag{font-size:.58rem;letter-spacing:.28em;color:var(--smoke);text-transform:uppercase;font-weight:600}
+  .badge{
+    font-size:.62rem;letter-spacing:.16em;font-weight:700;text-transform:uppercase;
+    color:var(--navy-bright);border:1px solid var(--ash);padding:7px 12px;border-radius:999px;
+  }
+  @media(max-width:560px){.badge{display:none}}
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{position:relative;text-align:center;padding:64px 0 36px;overflow:hidden}
+  .hero::before{ /* navy glow */
+    content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:680px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(43,92,135,.28),transparent 65%);
+    pointer-events:none;filter:blur(20px);
+  }
+  .hero .wrap{position:relative}
+  .hero h1{font-size:clamp(2.7rem,9vw,4.6rem);margin:18px 0 0}
+  .hero h1 .alt{color:var(--navy-bright)}
+  .hero p.sub{
+    color:var(--smoke);font-size:1.05rem;max-width:520px;margin:18px auto 0;
+  }
+  .stars{display:inline-flex;align-items:center;gap:10px;margin-bottom:6px;
+    font-size:.72rem;letter-spacing:.14em;font-weight:700;text-transform:uppercase;color:var(--smoke)}
+  .stars .s{color:var(--green);letter-spacing:2px;font-size:.9rem}
+
+  /* VSL / video slot */
+  .video-slot{
+    position:relative;margin:34px auto 0;max-width:680px;aspect-ratio:16/9;
+    border-radius:var(--radius);overflow:hidden;
+    background:linear-gradient(160deg,#16171d,#0c0d11);
+    border:1px solid var(--ash);
+    box-shadow:0 0 0 1px rgba(43,92,135,.25), 0 30px 80px -30px rgba(43,92,135,.55);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  }
+  .video-slot .play{
+    width:78px;height:78px;border-radius:50%;background:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 10px rgba(43,92,135,.18), 0 14px 40px -6px rgba(43,92,135,.8);
+  }
+  .video-slot .play::after{content:"";border-style:solid;border-width:13px 0 13px 22px;
+    border-color:transparent transparent transparent #fff;margin-left:5px}
+  .video-slot .vsl-note{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke)}
+  .hero .cta-row{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* ============================================================
+     SECTION SHELL
+     ============================================================ */
+  section{padding:56px 0}
+  .section-head{text-align:center;margin-bottom:40px}
+  .section-head h2{font-size:clamp(2rem,6.5vw,3rem);margin:14px 0 0}
+  .section-head p{color:var(--smoke);max-width:520px;margin:14px auto 0}
+  .divider{height:1px;background:var(--ash);max-width:var(--maxw);margin:0 auto}
+
+  /* Pain points */
+  .pains{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+  @media(max-width:560px){.pains{grid-template-columns:1fr}}
+  .pain{
+    background:var(--gunmetal);border:1px solid var(--ash);border-radius:14px;padding:20px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .pain .x{color:var(--amber);font-weight:700;flex:none;line-height:1.4}
+  .pain p{font-size:.95rem;color:var(--bone)}
+
+  /* ============================================================
+     THE ROUTINE (numbered, APEX-style)
+     ============================================================ */
+  .routine{list-style:none}
+  .step{
+    display:grid;grid-template-columns:auto 1fr;gap:20px;
+    padding:22px 0;border-top:1px solid var(--ash);align-items:start;
+  }
+  .step:first-child{border-top:none}
+  .step .num{
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:2rem;
+    color:var(--navy-bright);line-height:1;min-width:46px;
+  }
+  .step h3{font-size:1.25rem;letter-spacing:.02em;margin-bottom:4px}
+  .step .meta{
+    font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--gold);
+    letter-spacing:.04em;margin-bottom:7px;
+  }
+  .step p{color:var(--smoke);font-size:.95rem}
+
+  .howto{
+    background:var(--steel);border:1px solid var(--ash);border-radius:14px;
+    padding:22px 24px;margin-top:34px;
+  }
+  .howto h3{font-size:1.1rem;color:var(--bone);margin-bottom:10px}
+  .howto ul{list-style:none;display:grid;gap:9px}
+  .howto li{display:flex;gap:11px;font-size:.93rem;color:var(--smoke)}
+  .howto li .c{color:var(--green);flex:none;font-weight:700}
+
+  /* ============================================================
+     BOOK A CALL
+     ============================================================ */
+  .cta-section{
+    position:relative;background:
+      linear-gradient(180deg,rgba(43,92,135,.10),transparent 40%),var(--onyx);
+    border-top:1px solid var(--ash);
+  }
+  .cta-card{
+    background:var(--gunmetal);border:1px solid var(--ash);border-radius:20px;
+    padding:44px 30px;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-card::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+    width:420px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(43,92,135,.30),transparent 65%);filter:blur(14px);pointer-events:none}
+  .cta-card > *{position:relative}
+  .cta-pill{
+    display:inline-block;background:rgba(43,92,135,.18);color:var(--navy-bright);
+    border:1px solid rgba(62,127,184,.4);padding:7px 16px;border-radius:999px;
+    font-size:.66rem;letter-spacing:.2em;font-weight:700;text-transform:uppercase;margin-bottom:18px;
+  }
+  .cta-card h2{font-size:clamp(2rem,6.5vw,3rem)}
+  .cta-card h2 .alt{color:var(--navy-bright)}
+  .cta-card p.lead{color:var(--smoke);max-width:480px;margin:16px auto 0}
+  .cta-meta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;color:var(--smoke);
+    border:1px solid var(--ash);border-radius:999px;padding:9px 16px;
+  }
+  .cta-meta .dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+  .cta-card .btn{margin-top:26px}
+  .whatyouget{display:grid;gap:10px;max-width:420px;margin:26px auto 0;text-align:left}
+  .whatyouget li{list-style:none;display:flex;gap:11px;font-size:.93rem;color:var(--bone)}
+  .whatyouget li .c{color:var(--green);flex:none;font-weight:700}
+
+  /* Booking embed slot (paste Calendly/cal.com here) */
+  .booking-embed{
+    margin-top:30px;border:1px dashed var(--ash);border-radius:16px;
+    min-height:120px;display:flex;align-items:center;justify-content:center;
+    color:var(--smoke);font-size:.8rem;text-align:center;padding:24px;
+  }
+
+  /* Footer */
+  footer{border-top:1px solid var(--ash);padding:40px 0;text-align:center;color:var(--smoke)}
+  footer .fname{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--bone);letter-spacing:.04em}
+  footer .ftag{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;margin-top:4px}
+  footer .disclaimer{font-size:.72rem;max-width:540px;margin:22px auto 0;line-height:1.6;opacity:.8}
+  footer .legal{font-size:.7rem;margin-top:18px;opacity:.6}
+</style>
+</head>
+
+<body>
+
+<!-- ============================ TOP BAR ============================ -->
+<header>
+  <div class="wrap bar">
+    <div class="brand">
+      <!-- Swap this <svg> for: <img src="logo.png" alt="Next Level Dad Fitness" class="logo-mark"> -->
+      <svg class="logo-mark" viewBox="0 0 30 34" fill="none" aria-hidden="true">
+        <path d="M15 1C16 8 22 9 22 16c0 5-3 8-7 8s-7-3-7-8c0-3 2-5 3-7 0 4 3 5 3 8 1-4-1-7 1-16z"
+              fill="#2B5C87"/>
+        <path d="M15 9c1 4 4 4 4 8 0 3-2 5-4 5s-4-2-4-5c0-2 1-3 2-4 0 2 1 3 1 4 1-2 0-5 1-8z"
+              fill="#3E7FB8"/>
+      </svg>
+      <div>
+        <div class="brand-name">NEXT LEVEL DAD</div>
+        <div class="brand-tag">Faith · Family · Fitness</div>
+      </div>
+    </div>
+    <span class="badge">19 Yrs Fire &amp; EMS</span>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="stars"><span class="s">★★★★★</span> Built for the 24/48 crowd</div>
+    <div class="eyebrow">Free for first responders &amp; busy dads</div>
+    <h1>Kill the stiffness.<br><span class="alt">Save your back.</span></h1>
+    <p class="sub">The 10-minute mobility routine built for guys who work a shift, wear the gear, and feel it the next morning. No gym. No equipment. No floor-yoga nonsense.</p>
+
+    <!-- VSL SLOT — paste your video embed inside .video-slot when ready -->
+    <div class="video-slot" id="vsl">
+      <div class="play"></div>
+      <div class="vsl-note">Your 90-sec walkthrough goes here</div>
+    </div>
+
+    <div class="cta-row">
+      <a href="#routine" class="btn btn-primary">Get the routine ↓</a>
+      <a href="#book" class="btn btn-ghost">Talk to a coach</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================ PAIN POINTS ============================ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Sound familiar?</div>
+      <h2>The job wrecks your body.<br>Then life keeps moving.</h2>
+    </div>
+    <div class="pains">
+      <div class="pain"><span class="x">✕</span><p>Back's tight every morning after a long shift in the truck.</p></div>
+      <div class="pain"><span class="x">✕</span><p>Hips and lower back lock up from sitting in gear all day.</p></div>
+      <div class="pain"><span class="x">✕</span><p>Shoulders and neck carry the stress — and you feel it.</p></div>
+      <div class="pain"><span class="x">✕</span><p>No time, no gym, and "stretch more" is useless advice.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================ THE ROUTINE ============================ -->
+<section id="routine">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The free routine</div>
+      <h2>10 minutes. 9 moves.<br>Do it post-shift or before bed.</h2>
+      <p>No equipment. Move slow, breathe, and don't force anything. This is the exact sequence — run it top to bottom.</p>
+    </div>
+
+    <ol class="routine">
+      <li class="step">
+        <div class="num">01</div>
+        <div>
+          <h3>Cat–Cow</h3>
+          <div class="meta">SPINE · 10 SLOW REPS</div>
+          <p>On hands and knees. Arch and round the spine slowly with your breath. Wakes up a stiff back before anything else.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">02</div>
+        <div>
+          <h3>World's Greatest Stretch</h3>
+          <div class="meta">HIPS + T-SPINE · 5 / SIDE</div>
+          <p>Deep lunge, drop the elbow inside the front foot, then rotate and reach to the ceiling. The best single move for a beat-up body.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">03</div>
+        <div>
+          <h3>90/90 Hip Switch</h3>
+          <div class="meta">HIPS · 8 / SIDE</div>
+          <p>Sit with both knees bent at 90°, rotate side to side under control. Unlocks the hips that sitting in the rig locks down.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">04</div>
+        <div>
+          <h3>Couch Stretch</h3>
+          <div class="meta">HIP FLEXORS + QUADS · 60s / SIDE</div>
+          <p>Back knee down, shin up a wall or couch. Squeeze the glute and stand tall. This is where most back pain actually comes from.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">05</div>
+        <div>
+          <h3>Thread the Needle</h3>
+          <div class="meta">UPPER BACK · 8 / SIDE</div>
+          <p>From hands and knees, reach one arm under and through, then open up to the ceiling. Frees the shoulders and mid-back.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">06</div>
+        <div>
+          <h3>Door-Frame Chest Stretch</h3>
+          <div class="meta">CHEST + SHOULDERS · 30s / SIDE</div>
+          <p>Forearm on the door frame, step through gently. Undoes the hunched-forward posture from driving and desk time.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">07</div>
+        <div>
+          <h3>Standing Forward Fold</h3>
+          <div class="meta">HAMSTRINGS + LOW BACK · 45s</div>
+          <p>Soft knees, hinge at the hips and hang heavy. Let the head and arms go loose. Decompresses the whole back line.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">08</div>
+        <div>
+          <h3>Glute Bridge</h3>
+          <div class="meta">GLUTES · 12 REPS</div>
+          <p>On your back, drive through the heels and squeeze at the top. Wakes up the muscles that should be protecting your spine.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="num">09</div>
+        <div>
+          <h3>Chin Tucks + Neck Release</h3>
+          <div class="meta">NECK · 10 REPS</div>
+          <p>Gently draw the chin straight back, then slow tilts ear-to-shoulder. Kills the tension headaches and stiff neck.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="howto">
+      <h3>How to actually use it</h3>
+      <ul>
+        <li><span class="c">✓</span> Run it once a day — post-shift or right before bed works best.</li>
+        <li><span class="c">✓</span> Slow and controlled beats deep and forced. Never stretch into sharp pain.</li>
+        <li><span class="c">✓</span> Consistency &gt; intensity. 10 minutes daily for 2 weeks and you'll feel the difference.</li>
+        <li><span class="c">✓</span> Hurting more than it should? That's a signal — not something to push through.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BOOK A CALL ============================ -->
+<section class="cta-section" id="book">
+  <div class="wrap">
+    <div class="cta-card">
+      <span class="cta-pill">Free Strategy Call</span>
+      <h2>Still in pain &amp; running on empty?<br><span class="alt">Let's fix the root of it.</span></h2>
+      <p class="lead">If the stiffness, the fatigue, and the start-stop cycle are wearing you down — and you're a first responder or busy dad who wants to actually feel strong again — book a free call. We'll map out a simple plan that survives a 24/48.</p>
+
+      <ul class="whatyouget">
+        <li><span class="c">✓</span> A clear read on what's driving your pain &amp; fatigue</li>
+        <li><span class="c">✓</span> A simple, repeatable plan built around your shift schedule</li>
+        <li><span class="c">✓</span> Zero pressure — just a real conversation, coach to firefighter</li>
+      </ul>
+
+      <div class="cta-meta"><span class="dot"></span> 30-min call · No pitch pressure</div>
+
+      <!-- OPTION A: simple button (set your booking URL) -->
+      <div><a href="https://YOUR-BOOKING-LINK.com" target="_blank" rel="noopener" class="btn btn-primary">Book my free call →</a></div>
+
+      <!-- OPTION B: embed your scheduler instead of the button above.
+           Paste your Calendly / cal.com / Cal embed snippet inside this div,
+           then delete OPTION A. -->
+      <div class="booking-embed">
+        Booking calendar embeds here — paste your Calendly / cal.com snippet.<br>(Or keep the button above and delete this box.)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="fname">NEXT LEVEL DAD FITNESS</div>
+    <div class="ftag">Faith · Family · Fitness</div>
+    <p class="disclaimer">This routine is general fitness information, not medical advice. If you have an injury, a medical condition, or pain that's sharp, radiating, or getting worse, see a qualified healthcare provider before starting. Move within your own limits.</p>
+    <p class="legal">© <span id="yr"></span> Next Level Dad Fitness. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
