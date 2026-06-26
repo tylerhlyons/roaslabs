@@ -1,4 +1,35 @@
-# Next Level Dad Fitness — Lead Magnet Landing Page
+# Next Level Dad Fitness — Lead Magnet Landing Pages
+
+A set of single-file landing pages for firefighter / busy-dad freebies.
+Built to be sent from ManyChat (or any DM/email), get the prospect the free
+value, then funnel the right people into a **free call**.
+
+## The pages
+
+| File | Lead magnet | Video |
+|------|-------------|-------|
+| `index.html` | Shift-Proof Stretch Routine | Hero VSL slot (timed CTA) |
+| `kettlebell.html` | 30 Kettlebell Exercises | Per-exercise demo links |
+| `meal-guide.html` | 10 High-Protein Meals + macros | — |
+| `core-routine.html` | Firefighter Core Routine (5 moves) | — |
+| `macro-calculator.html` | Working macro calculator | Hero video slot (blank) |
+
+Each page is **self-contained** — drop any single `.html` (plus `logo.png`)
+into Netlify and it works on its own. The booking button on every page points
+to `https://nextleveldadfitness.com/calendar-page`.
+
+### Editing the content
+- **Exercise / meal lists** live in a clearly-marked `var DATA` array near the
+  bottom of each file's `<script>`. Edit text there — no HTML required.
+- **Kettlebell demo links:** add a YouTube URL to any `yt:""` field and that
+  exercise's button becomes a clickable "Watch demo".
+- **Macro calculator:** uses the Mifflin-St Jeor formula with safe-pace caps.
+  The blank video slot at the top is ready for your client's walkthrough —
+  paste the embed inside `<div class="video-slot" id="vsl">`.
+
+---
+
+## (Original page notes — Shift-Proof Stretch Routine)
 
 A single-file landing page for the **"Shift-Proof Stretch Routine"** freebie.
 Built to be sent from ManyChat (or any DM/email), get the prospect the free

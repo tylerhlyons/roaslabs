@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Macro Calculator for Firefighters — Next Level Dad Fitness</title>
+<meta name="description" content="Punch in your numbers and get your exact daily calories and macros to hit your goal in your timeframe. Built for firefighters and busy dads." />
+<meta property="og:title" content="Free Macro Calculator — Next Level Dad Fitness" />
+<meta property="og:description" content="Your goal, your timeframe, your exact numbers. No more guessing." />
+<meta property="og:image" content="og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy:#2B5C87;--navy-bright:#3E7FB8;--gold:#E5B143;--green:#3BB273;--amber:#F2C94C;
+  --onyx:#0A0A0B;--gunmetal:#14151A;--steel:#1A1B22;--ash:#2D2E33;--bone:#F2F2F5;--smoke:#A5A7AE;--maxw:900px;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--onyx);color:var(--bone);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95;text-transform:uppercase}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.eyebrow{font-family:'Inter',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy-bright);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--navy-bright);display:inline-block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.92rem;padding:18px 34px;border-radius:999px;cursor:pointer;border:none;text-align:center;transition:transform .15s,box-shadow .15s,background .15s}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 0 0 1px rgba(62,127,184,.4),0 12px 40px -8px rgba(43,92,135,.7)}
+.btn-primary:hover{background:var(--navy-bright);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(62,127,184,.6),0 16px 50px -8px rgba(43,92,135,.9)}
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--ash)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-mark{width:30px;height:34px;display:block}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;line-height:1}
+.brand-tag{font-size:.58rem;letter-spacing:.28em;color:var(--smoke);text-transform:uppercase;font-weight:600}
+.badge{font-size:.62rem;letter-spacing:.16em;font-weight:700;text-transform:uppercase;color:var(--navy-bright);border:1px solid var(--ash);padding:7px 12px;border-radius:999px}
+@media(max-width:560px){.badge{display:none}}
+.hero{position:relative;text-align:center;padding:60px 0 30px;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:680px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(43,92,135,.28),transparent 65%);pointer-events:none;filter:blur(20px)}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(2.5rem,8vw,4.2rem);margin:16px 0 0}
+.hero h1 .alt{color:var(--navy-bright)}
+.hero p.sub{color:var(--smoke);font-size:1.05rem;max-width:560px;margin:18px auto 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:6px;font-size:.72rem;letter-spacing:.14em;font-weight:700;text-transform:uppercase;color:var(--smoke)}
+.kicker .s{color:var(--green);letter-spacing:2px;font-size:.9rem}
+/* video slot */
+.video-slot{position:relative;margin:32px auto 0;max-width:760px;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,#16171d,#0c0d11);border:1px solid var(--ash);box-shadow:0 0 0 1px rgba(43,92,135,.25),0 30px 80px -30px rgba(43,92,135,.55);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+.video-slot .play{width:78px;height:78px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(43,92,135,.18),0 14px 40px -6px rgba(43,92,135,.8)}
+.video-slot .play::after{content:"";border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent #fff;margin-left:5px}
+.video-slot .vsl-note{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke)}
+section{padding:48px 0}
+.section-head{text-align:center;margin-bottom:34px}
+.section-head h2{font-size:clamp(2rem,6.5vw,3rem);margin:14px 0 0}
+.section-head p{color:var(--smoke);max-width:540px;margin:14px auto 0}
+.divider{height:1px;background:var(--ash);max-width:var(--maxw);margin:0 auto}
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:720px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--gunmetal);border:1px solid var(--ash);border-radius:18px;padding:26px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.field.full{grid-column:1/-1}
+label{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--smoke);margin-bottom:7px}
+input,select{width:100%;background:var(--onyx);border:1px solid var(--ash);border-radius:10px;color:var(--bone);
+  font-family:'Inter',sans-serif;font-size:.98rem;padding:13px 14px;outline:none;transition:border .15s}
+input:focus,select:focus{border-color:var(--navy-bright)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A5A7AE' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.hint{font-size:.7rem;color:var(--smoke);margin-top:6px}
+.toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toggle button{font-family:'Inter',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;
+  padding:13px;border-radius:10px;border:1px solid var(--ash);background:var(--onyx);color:var(--smoke);cursor:pointer;transition:all .15s}
+.toggle button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.err{color:var(--amber);font-size:.8rem;margin-top:4px;min-height:1px}
+/* result */
+.result-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--smoke);padding:30px}
+.result-empty .ghost{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--ash);margin-bottom:10px}
+.result{display:none}
+.result.show{display:block}
+.r-target{text-align:center;padding:6px 0 16px;border-bottom:1px solid var(--ash);margin-bottom:18px}
+.r-target .big{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:3.4rem;color:var(--navy-bright);line-height:1}
+.r-target .cap{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);margin-top:6px}
+.r-target .maint{font-size:.8rem;color:var(--smoke);margin-top:8px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--steel);border:1px solid var(--ash);border-radius:12px;padding:14px 8px;text-align:center}
+.tile .tn{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.5rem;line-height:1}
+.tile.p .tn{color:var(--green)} .tile.c .tn{color:var(--navy-bright)} .tile.f .tn{color:var(--gold)}
+.tile .tl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke);margin-top:6px}
+.r-rate{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--bone);text-align:center;margin-top:18px}
+.r-note{font-size:.82rem;color:var(--smoke);text-align:center;margin-top:14px;line-height:1.5}
+.r-note.ok{color:var(--green)} .r-note.warn{color:var(--amber)}
+.r-cta{margin-top:22px;text-align:center}
+/* book a call */
+.cta-section{position:relative;background:linear-gradient(180deg,rgba(43,92,135,.10),transparent 40%),var(--onyx);border-top:1px solid var(--ash)}
+.cta-card{background:var(--gunmetal);border:1px solid var(--ash);border-radius:20px;padding:44px 30px;text-align:center;position:relative;overflow:hidden;max-width:780px;margin:0 auto}
+.cta-card::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:420px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(43,92,135,.30),transparent 65%);filter:blur(14px);pointer-events:none}
+.cta-card>*{position:relative}
+.cta-pill{display:inline-block;background:rgba(43,92,135,.18);color:var(--navy-bright);border:1px solid rgba(62,127,184,.4);padding:7px 16px;border-radius:999px;font-size:.66rem;letter-spacing:.2em;font-weight:700;text-transform:uppercase;margin-bottom:18px}
+.cta-card h2{font-size:clamp(2rem,6.5vw,3rem)}
+.cta-card h2 .alt{color:var(--navy-bright)}
+.cta-card p.lead{color:var(--smoke);max-width:500px;margin:16px auto 0}
+.cta-meta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;color:var(--smoke);border:1px solid var(--ash);border-radius:999px;padding:9px 16px}
+.cta-meta .dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+.cta-card .btn{margin-top:26px}
+footer{border-top:1px solid var(--ash);padding:40px 0;text-align:center;color:var(--smoke)}
+footer .fname{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--bone);letter-spacing:.04em}
+footer .ftag{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;margin-top:4px}
+footer .disclaimer{font-size:.72rem;max-width:580px;margin:22px auto 0;line-height:1.6;opacity:.8}
+footer .legal{font-size:.7rem;margin-top:18px;opacity:.6}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="brand">
+      <img src="logo.png" alt="Next Level Dad Fitness" class="logo-mark"
+           onerror="this.onerror=null;this.outerHTML=`<svg class='logo-mark' viewBox='0 0 30 34' fill='none'><path d='M15 1C16 8 22 9 22 16c0 5-3 8-7 8s-7-3-7-8c0-3 2-5 3-7 0 4 3 5 3 8 1-4-1-7 1-16z' fill='#2B5C87'/><path d='M15 9c1 4 4 4 4 8 0 3-2 5-4 5s-4-2-4-5c0-2 1-3 2-4 0 2 1 3 1 4 1-2 0-5 1-8z' fill='#3E7FB8'/></svg>`">
+      <div><div class="brand-name">NEXT LEVEL DAD</div><div class="brand-tag">Faith · Family · Fitness</div></div>
+    </div>
+    <span class="badge">19 Yrs Fire &amp; EMS</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker"><span class="s">★★★★★</span> Free tool for firefighters &amp; busy dads</div>
+    <div class="eyebrow">Free macro calculator</div>
+    <h1>Your numbers.<br><span class="alt">No more guessing.</span></h1>
+    <p class="sub">Watch the quick walkthrough, then punch in your details. You'll get the exact calories and macros to hit your goal — in your timeframe, around your shift.</p>
+
+    <!-- VIDEO SLOT — left blank on purpose. Paste your video embed inside
+         this div when it's ready (replace the play button + note). -->
+    <div class="video-slot" id="vsl">
+      <div class="play"></div>
+      <div class="vsl-note">Walkthrough video coming soon</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Step 1 · Your numbers</div>
+      <h2>Punch in your details.</h2>
+      <p>You'll get your daily calories and macros to start shifting fat — or building — not next month, today.</p>
+    </div>
+
+    <div class="calc">
+      <!-- FORM -->
+      <div class="panel">
+        <div class="grid2">
+          <div class="field">
+            <label>Biological sex</label>
+            <select id="sex"><option value="male">Male</option><option value="female">Female</option></select>
+          </div>
+          <div class="field">
+            <label>Age</label>
+            <input id="age" type="number" inputmode="numeric" placeholder="35" min="14" max="90">
+          </div>
+        </div>
+
+        <div class="field full">
+          <label>Measurement system</label>
+          <div class="toggle" id="unitToggle">
+            <button type="button" data-unit="metric" class="active">Metric (kg / cm)</button>
+            <button type="button" data-unit="imperial">Imperial (lbs / in)</button>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label id="lblWeight">Current weight (kg)</label>
+            <input id="weight" type="number" inputmode="decimal" placeholder="90">
+          </div>
+          <div class="field">
+            <label id="lblHeight">Height (cm)</label>
+            <input id="height" type="number" inputmode="decimal" placeholder="178">
+            <div class="hint" id="hintHeight">&nbsp;</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label id="lblGoal">Goal weight (kg)</label>
+            <input id="goal" type="number" inputmode="decimal" placeholder="83">
+          </div>
+          <div class="field">
+            <label>Timeframe (weeks)</label>
+            <input id="weeks" type="number" inputmode="numeric" placeholder="12" min="1" max="104">
+          </div>
+        </div>
+
+        <div class="field full">
+          <label>Activity level (outside training)</label>
+          <select id="activity">
+            <option value="1.2">Sedentary — desk job, little movement</option>
+            <option value="1.375">Light — on feet some, light activity</option>
+            <option value="1.55" selected>Moderate — active job / train 3–4x</option>
+            <option value="1.725">Very active — hard shifts / train 5–6x</option>
+            <option value="1.9">Athlete — physical job + daily training</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Dietary style</label>
+          <select id="style">
+            <option value="balanced" selected>Balanced</option>
+            <option value="high">High protein</option>
+            <option value="low">Lower carb</option>
+          </select>
+        </div>
+
+        <div class="err" id="err"></div>
+        <button class="btn btn-primary btn-block" id="calcBtn" style="width:100%;margin-top:6px">Calculate my numbers</button>
+      </div>
+
+      <!-- RESULT -->
+      <div class="panel" style="display:flex">
+        <div class="result-empty" id="resultEmpty">
+          <div class="ghost">Your numbers</div>
+          <div>Punch your details in and hit calculate — your daily targets land right here.</div>
+        </div>
+        <div class="result" id="result" style="width:100%">
+          <div class="r-target">
+            <div class="big" id="rCal">0</div>
+            <div class="cap" id="rCalCap">calories / day</div>
+            <div class="maint" id="rMaint"></div>
+          </div>
+          <div class="tiles">
+            <div class="tile p"><div class="tn" id="rP">0g</div><div class="tl">Protein</div></div>
+            <div class="tile c"><div class="tn" id="rC">0g</div><div class="tl">Carbs</div></div>
+            <div class="tile f"><div class="tn" id="rF">0g</div><div class="tl">Fat</div></div>
+          </div>
+          <div class="r-rate" id="rRate"></div>
+          <div class="r-note" id="rNote"></div>
+          <div class="r-cta">
+            <a href="https://nextleveldadfitness.com/calendar-page" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="width:100%">Have us run it for you →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta-section" id="book">
+  <div class="wrap">
+    <div class="cta-card">
+      <span class="cta-pill">Free 15-minute call</span>
+      <h2>Numbers are step one.<br><span class="alt">Let's make them stick.</span></h2>
+      <p class="lead">Knowing your macros is easy. Hitting them through a 24/48, station food, and family life is the hard part — that's where coaching comes in. Book a free call and we'll build the plan around your real schedule.</p>
+      <div class="cta-meta"><span class="dot"></span> 15-min call · No pitch pressure</div>
+      <div><a href="https://nextleveldadfitness.com/calendar-page" target="_blank" rel="noopener" class="btn btn-primary">Book my free call →</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fname">NEXT LEVEL DAD FITNESS</div>
+    <div class="ftag">Faith · Family · Fitness</div>
+    <p class="disclaimer">This calculator gives general estimates using the Mifflin-St Jeor equation and standard activity multipliers. It is not medical or dietary advice. Real results vary — adjust based on how your body responds, and consult a qualified provider before major changes, especially with a medical condition.</p>
+    <p class="legal">© <span id="yr"></span> Next Level Dad Fitness. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- unit toggle ---------- */
+var unit = 'metric';
+var toggle = document.getElementById('unitToggle');
+toggle.addEventListener('click', function(e){
+  var b = e.target.closest('button'); if(!b) return;
+  unit = b.dataset.unit;
+  toggle.querySelectorAll('button').forEach(function(x){x.classList.toggle('active', x===b);});
+  var metric = unit==='metric';
+  document.getElementById('lblWeight').textContent = 'Current weight ('+(metric?'kg':'lbs')+')';
+  document.getElementById('lblGoal').textContent   = 'Goal weight ('+(metric?'kg':'lbs')+')';
+  document.getElementById('lblHeight').textContent = 'Height ('+(metric?'cm':'in')+')';
+  document.getElementById('weight').placeholder = metric?'90':'198';
+  document.getElementById('goal').placeholder   = metric?'83':'183';
+  document.getElementById('height').placeholder = metric?'178':'70';
+  document.getElementById('hintHeight').innerHTML = metric ? '&nbsp;' : "e.g. 70 in = 5'10\"";
+});
+
+/* ---------- helpers ---------- */
+function num(id){ var v = parseFloat(document.getElementById(id).value); return isNaN(v)?null:v; }
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+
+/* ---------- calculate ---------- */
+document.getElementById('calcBtn').addEventListener('click', function(){
+  var err = document.getElementById('err'); err.textContent = '';
+  var sex = document.getElementById('sex').value;
+  var age = num('age'), w = num('weight'), h = num('height'), g = num('goal'), weeks = num('weeks');
+  var act = parseFloat(document.getElementById('activity').value);
+  var style = document.getElementById('style').value;
+
+  if(age===null||w===null||h===null||g===null){ err.textContent = 'Fill in age, weight, height and goal weight.'; return; }
+  if(age<14||age>90){ err.textContent = 'Enter a realistic age (14–90).'; return; }
+  if(weeks===null||weeks<1){ weeks = null; } // timeframe optional for maintenance
+
+  // to metric
+  var kg  = unit==='metric' ? w : w*0.453592;
+  var cm  = unit==='metric' ? h : h*2.54;
+  var gkg = unit==='metric' ? g : g*0.453592;
+
+  if(kg<35||kg>250||cm<120||cm>230){ err.textContent = 'Double-check your weight and height.'; return; }
+
+  // BMR (Mifflin-St Jeor) + TDEE
+  var bmr  = 10*kg + 6.25*cm - 5*age + (sex==='male'?5:-161);
+  var tdee = bmr*act;
+
+  var diffKg = kg - gkg;                 // + = lose, - = gain
+  var direction = Math.abs(diffKg) < 0.3 ? 'maintain' : (diffKg>0 ? 'lose' : 'gain');
+
+  var target = tdee, dailyAdjust = 0, note = '', noteClass = 'ok', capped = false;
+
+  if(direction !== 'maintain'){
+    var totalK = Math.abs(diffKg)*7700;          // ~7700 kcal per kg
+    var dailyRaw = weeks ? totalK/(weeks*7) : 0; // 0 if no timeframe → use a default moderate pace
+    if(!weeks){ dailyRaw = direction==='lose' ? 550 : 350; } // sensible default pace if timeframe left blank
+
+    if(direction==='lose'){
+      var cap = Math.min(1000, 0.25*tdee);
+      dailyAdjust = Math.min(dailyRaw, cap);
+      if(dailyRaw > cap) capped = true;
+      target = tdee - dailyAdjust;
+      var floor = sex==='male' ? 1500 : 1200;
+      if(target < floor){ target = floor; dailyAdjust = tdee - floor; capped = true; }
+    } else {
+      var capG = 500;
+      dailyAdjust = Math.min(dailyRaw, capG);
+      if(dailyRaw > capG) capped = true;
+      target = tdee + dailyAdjust;
+    }
+  }
+
+  /* ---- macros ---- */
+  var protPerKg = style==='high' ? 2.4 : (style==='low' ? 2.2 : 2.0);
+  var protein = protPerKg * kg;
+  var fatPct  = style==='low' ? 0.40 : 0.25;
+  var fat     = target*fatPct/9;
+  var carbs   = (target - protein*4 - fat*9)/4;
+  if(carbs < 30){ carbs = 30; fat = (target - protein*4 - carbs*4)/9; if(fat<25) fat = 25; }
+
+  /* ---- render ---- */
+  document.getElementById('result').classList.add('show');
+  document.getElementById('resultEmpty').style.display = 'none';
+  document.getElementById('rCal').textContent = fmt(target);
+  document.getElementById('rMaint').textContent = 'Maintenance ≈ ' + fmt(tdee) + ' cal/day';
+  document.getElementById('rP').textContent = Math.round(protein)+'g';
+  document.getElementById('rC').textContent = Math.round(carbs)+'g';
+  document.getElementById('rF').textContent = Math.round(fat)+'g';
+
+  var unitLbl = unit==='metric' ? 'kg' : 'lbs';
+  var rateKg = dailyAdjust*7/7700;
+  var rate = unit==='metric' ? rateKg : rateKg/0.453592;
+  var rateEl = document.getElementById('rRate');
+  var noteEl = document.getElementById('rNote');
+
+  if(direction==='maintain'){
+    rateEl.textContent = 'Goal: hold steady at your current weight.';
+    note = 'These are your maintenance numbers. Eat here to stay where you are while you build strength.';
+    noteClass = 'ok';
+  } else {
+    var verb = direction==='lose' ? 'lose' : 'gain';
+    var arrow = direction==='lose' ? '−' : '+';
+    rateEl.textContent = arrow + (Math.abs(rate)).toFixed(1) + ' ' + unitLbl + ' / week  ·  ' + arrow + fmt(dailyAdjust) + ' cal / day vs maintenance';
+    if(capped){
+      var realWeeks = Math.ceil(Math.abs(diffKg)*7700/(dailyAdjust*7));
+      note = 'Heads up — your timeframe is aggressive. We capped it at a safe, sustainable pace, so plan on roughly ' + realWeeks + ' weeks to ' + verb + ' that. Slower sticks better.';
+      noteClass = 'warn';
+    } else {
+      note = 'Hit these daily, track for 2+ weeks, and adjust as the scale moves. Consistency beats perfection.';
+      noteClass = 'ok';
+    }
+  }
+  noteEl.textContent = note;
+  noteEl.className = 'r-note ' + noteClass;
+  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+</script>
+</body>
+</html>
